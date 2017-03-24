@@ -18,6 +18,14 @@
       </xs:documentation>
     </xs:annotation>
     <xs:all>
+      <xs:element name="package" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">0.3</xs:documentation>
+          <xs:documentation source="description">
+            The package name of the generated Java classes.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="groups" minOccurs="0">
         <xs:annotation>
           <xs:documentation source="version">0.1+</xs:documentation>
@@ -38,11 +46,11 @@
       <xs:documentation source="version">0.1+</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="class" type="xs:string">
+      <xs:element name="name" type="xs:string">
         <xs:annotation>
-          <xs:documentation source="version">0.1+</xs:documentation>
+          <xs:documentation source="version">0.3</xs:documentation>
           <xs:documentation source="description">
-            The fully qualified name of the generated Java class.
+            The name of the generated Java class.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
