@@ -20,7 +20,7 @@
     <xs:all>
       <xs:element name="package" type="xs:string">
         <xs:annotation>
-          <xs:documentation source="version">0.3</xs:documentation>
+          <xs:documentation source="version">0.3+</xs:documentation>
           <xs:documentation source="description">
             The package name of the generated Java classes.
           </xs:documentation>
@@ -48,7 +48,7 @@
     <xs:all>
       <xs:element name="name" type="xs:string">
         <xs:annotation>
-          <xs:documentation source="version">0.3</xs:documentation>
+          <xs:documentation source="version">0.3+</xs:documentation>
           <xs:documentation source="description">
             The name of the generated Java class.
           </xs:documentation>
@@ -81,7 +81,7 @@
           <xs:documentation source="description">The name of the configuration option.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="type" type="xs:string">
+      <xs:element name="type" type="ValueType">
         <xs:annotation>
           <xs:documentation source="version">0.1+</xs:documentation>
           <xs:documentation source="description">The type of the configuration option value.</xs:documentation>
@@ -97,6 +97,14 @@
       </xs:element>
     </xs:all>
   </xs:complexType>
+  <xs:simpleType name="ValueType" final="restriction" >
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="int" />
+      <xs:enumeration value="duration" />
+      <xs:enumeration value="string" />
+      <xs:enumeration value="bool" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="Defaults">
     <xs:annotation>
       <xs:documentation source="version">0.1+</xs:documentation>
