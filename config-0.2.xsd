@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://product.hubspot.com" xmlns="http://product.hubspot.com">
   <xs:element name="config" type="Configuration">
     <xs:annotation>
-      <xs:documentation source="version">0.1</xs:documentation>
+      <xs:documentation source="version">0.1+</xs:documentation>
       <xs:documentation source="description">
         The &lt;code&gt;&amp;lt;config&amp;gt;&lt;/code&gt; element is the root of the descriptor.
         The following table lists all of the possible child elements.
@@ -11,7 +11,7 @@
   </xs:element>
   <xs:complexType name="Configuration">
     <xs:annotation>
-      <xs:documentation source="version">0.1</xs:documentation>
+      <xs:documentation source="version">0.1+</xs:documentation>
       <xs:documentation source="description">
         The &lt;code&gt;&amp;lt;config&amp;gt;&lt;/code&gt; element is the root of the descriptor.
         The following table lists all of the possible child elements.
@@ -20,7 +20,7 @@
     <xs:all>
       <xs:element name="groups" minOccurs="0">
         <xs:annotation>
-          <xs:documentation source="version">0.1</xs:documentation>
+          <xs:documentation source="version">0.1+</xs:documentation>
           <xs:documentation source="description">
             This element describes all of the configuration groups to be generated.
           </xs:documentation>
@@ -35,12 +35,12 @@
   </xs:complexType>
   <xs:complexType name="Group">
     <xs:annotation>
-      <xs:documentation source="version">0.1</xs:documentation>
+      <xs:documentation source="version">0.1+</xs:documentation>
     </xs:annotation>
     <xs:all>
       <xs:element name="class" type="xs:string">
         <xs:annotation>
-          <xs:documentation source="version">0.1</xs:documentation>
+          <xs:documentation source="version">0.1+</xs:documentation>
           <xs:documentation source="description">
             The fully qualified name of the generated Java class.
           </xs:documentation>
@@ -48,7 +48,7 @@
       </xs:element>
       <xs:element name="options">
         <xs:annotation>
-          <xs:documentation source="version">4.0.0</xs:documentation>
+          <xs:documentation source="version">0.1+</xs:documentation>
           <xs:documentation source="description">
             Lists all of the options within this configuration group.
           </xs:documentation>
@@ -63,25 +63,25 @@
   </xs:complexType>
   <xs:complexType name="Option">
     <xs:annotation>
-      <xs:documentation source="version">0.1</xs:documentation>
+      <xs:documentation source="version">0.1+</xs:documentation>
       <xs:documentation source="description">Description of a single configuration option.</xs:documentation>
     </xs:annotation>
     <xs:all>
       <xs:element name="name" type="xs:string">
         <xs:annotation>
-          <xs:documentation source="version">0.1</xs:documentation>
+          <xs:documentation source="version">0.1+</xs:documentation>
           <xs:documentation source="description">The name of the configuration option.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="type" type="xs:string">
         <xs:annotation>
-          <xs:documentation source="version">0.1</xs:documentation>
+          <xs:documentation source="version">0.1+</xs:documentation>
           <xs:documentation source="description">The type of the configuration option value.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="defaults" type="Defaults">
         <xs:annotation>
-          <xs:documentation source="version">0.1</xs:documentation>
+          <xs:documentation source="version">0.1+</xs:documentation>
           <xs:documentation source="description">
             Specifies the default value(s) for this configuration option.
           </xs:documentation>
@@ -91,15 +91,15 @@
   </xs:complexType>
   <xs:complexType name="Defaults">
     <xs:annotation>
-      <xs:documentation source="version">0.1</xs:documentation>
+      <xs:documentation source="version">0.1+</xs:documentation>
       <xs:documentation source="description">
         Specifies the default value(s) for this configuration option.
       </xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="global" minOccurs="0" type="xs:string">
+      <xs:element name="global" type="xs:string">
         <xs:annotation>
-          <xs:documentation source="version">0.1</xs:documentation>
+          <xs:documentation source="version">0.1+</xs:documentation>
           <xs:documentation source="description">
             The global default value for the configuration option.
           </xs:documentation>
@@ -107,7 +107,7 @@
       </xs:element>
       <xs:element name="qa" minOccurs="0" type="xs:string">
         <xs:annotation>
-          <xs:documentation source="version">0.1</xs:documentation>
+          <xs:documentation source="version">0.1+</xs:documentation>
           <xs:documentation source="description">
             The default value for the configuration option when running in the QA environment.
           </xs:documentation>
@@ -115,7 +115,7 @@
       </xs:element>
       <xs:element name="prod" minOccurs="0" type="xs:string">
         <xs:annotation>
-          <xs:documentation source="version">0.1</xs:documentation>
+          <xs:documentation source="version">0.1+</xs:documentation>
           <xs:documentation source="description">
             The default value for the configuration option when running in the Prod environment.
           </xs:documentation>
