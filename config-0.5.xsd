@@ -18,7 +18,7 @@
       </xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="package" type="xs:string">
+      <xs:element name="package" type="PackageName">
         <xs:annotation>
           <xs:documentation source="version">0.3+</xs:documentation>
           <xs:documentation source="description">
@@ -41,12 +41,17 @@
       </xs:element>
     </xs:all>
   </xs:complexType>
+  <xs:simpleType name="PackageName">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[a-z]+(\.[a-z][a-z0-9]*)*" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="Group">
     <xs:annotation>
       <xs:documentation source="version">0.1+</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="name" type="xs:string">
+      <xs:element name="name" type="GroupName">
         <xs:annotation>
           <xs:documentation source="version">0.3+</xs:documentation>
           <xs:documentation source="description">
@@ -69,13 +74,18 @@
       </xs:element>
     </xs:all>
   </xs:complexType>
+  <xs:simpleType name="GroupName">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z][a-zA-Z0-9]*" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="Option">
     <xs:annotation>
       <xs:documentation source="version">0.1+</xs:documentation>
       <xs:documentation source="description">Description of a single configuration option.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="name" type="xs:string">
+      <xs:element name="name" type="OptionName">
         <xs:annotation>
           <xs:documentation source="version">0.1+</xs:documentation>
           <xs:documentation source="description">The name of the configuration option.</xs:documentation>
@@ -97,6 +107,11 @@
       </xs:element>
     </xs:all>
   </xs:complexType>
+  <xs:simpleType name="OptionName">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z][A-Z0-9_]*" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:simpleType name="ValueType" final="restriction" >
     <xs:restriction base="xs:string">
       <xs:enumeration value="int" />
