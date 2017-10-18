@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://product.hubspot.com" xmlns="http://product.hubspot.com">
+  <xs:element name="config" type="Configuration">
+    <xs:annotation>
+      <xs:documentation source="version">0.1+</xs:documentation>
+      <xs:documentation source="description">
+        The &lt;code&gt;&amp;lt;config&amp;gt;&lt;/code&gt; element is the root of the descriptor.
+        The following table lists all of the possible child elements.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="Configuration">
+    <xs:annotation>
+      <xs:documentation source="version">0.1+</xs:documentation>
+      <xs:documentation source="description">
+        The &lt;code&gt;&amp;lt;config&amp;gt;&lt;/code&gt; element is the root of the descriptor.
+        The following table lists all of the possible child elements.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="package" type="PackageName">
+        <xs:annotation>
+          <xs:documentation source="version">0.3+</xs:documentation>
+          <xs:documentation source="description">
+            The package name of the generated Java classes.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="groups" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation source="version">0.1+</xs:documentation>
+          <xs:documentation source="description">
+            This element describes all of the configuration groups to be generated.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="group" maxOccurs="unbounded" type="Group"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:simpleType name="PackageName">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[a-z]+(\.[a-z][a-z0-9]*)*" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Group">
+    <xs:annotation>
+      <xs:documentation source="version">0.1+</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="name" type="GroupName">
+        <xs:annotation>
+          <xs:documentation source="version">0.3+</xs:documentation>
+          <xs:documentation source="description">
+            The name of the generated Java class.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="options">
+        <xs:annotation>
+          <xs:documentation source="version">0.1+</xs:documentation>
+          <xs:documentation source="description">
+            Lists all of the options within this configuration group.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="option" maxOccurs="unbounded" type="Option"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:simpleType name="GroupName">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z][a-zA-Z0-9]*" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Option">
+    <xs:annotation>
+      <xs:documentation source="version">0.1+</xs:documentation>
+      <xs:documentation source="description">Description of a single configuration option.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="name" type="OptionName">
+        <xs:annotation>
+          <xs:documentation source="version">0.1+</xs:documentation>
+          <xs:documentation source="description">The name of the configuration option.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="type" type="ValueType">
+        <xs:annotation>
+          <xs:documentation source="version">0.1+</xs:documentation>
+          <xs:documentation source="description">The type of the configuration option value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="defaultValue" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">0.6+</xs:documentation>
+          <xs:documentation source="description">
+            Specifies the default value for this configuration option.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="environmentDefaults" minOccurs="0" type="EnvironmentDefaults">
+        <xs:annotation>
+          <xs:documentation source="version">0.6+</xs:documentation>
+          <xs:documentation source="description">
+            Specifies the default value(s) for this configuration option.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:simpleType name="OptionName">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z][A-Z0-9_]*" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ValueType" final="restriction" >
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="STRING" />
+      <xs:enumeration value="INTEGER" />
+      <xs:enumeration value="LONG" />
+      <xs:enumeration value="DOUBLE" />
+      <xs:enumeration value="BOOLEAN" />
+      <xs:enumeration value="DURATION" />
+      <xs:enumeration value="STRING_LIST" />
+      <xs:enumeration value="INTEGER_LIST" />
+      <xs:enumeration value="DURATION_LIST" />
+      <xs:enumeration value="STRING_SET" />
+      <xs:enumeration value="INTEGER_SET" />
+      <xs:enumeration value="DURATION_SET" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="EnvironmentDefaults">
+    <xs:annotation>
+      <xs:documentation source="version">0.6+</xs:documentation>
+      <xs:documentation source="description">
+        Allows you to specify different defaults for this configuration option
+        based on the environment and/or application type.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="all" minOccurs="0" type="EnvironmentDefaultWithoutAny">
+        <xs:annotation>
+          <xs:documentation source="version">0.6+</xs:documentation>
+          <xs:documentation source="description">
+            Allows you to specify a different default based on application type.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="qa" minOccurs="0" type="EnvironmentDefaultWithAny">
+        <xs:annotation>
+          <xs:documentation source="version">0.6+</xs:documentation>
+          <xs:documentation source="description">
+            Allows you to specify a different default in QA based on application type.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="prod" minOccurs="0" type="EnvironmentDefaultWithAny">
+        <xs:annotation>
+          <xs:documentation source="version">0.6+</xs:documentation>
+          <xs:documentation source="description">
+            Allows you to specify a different default in Prod based on application type.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="EnvironmentDefaultWithoutAny">
+    <xs:annotation>
+      <xs:documentation source="version">0.6+</xs:documentation>
+      <xs:documentation source="description">
+        Specifies the default value for this environment based on application type.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="api" minOccurs="0" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">0.7+</xs:documentation>
+          <xs:documentation source="description">
+            The default value if the application type is API.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="EnvironmentDefaultWithAny">
+    <xs:annotation>
+      <xs:documentation source="version">0.10+</xs:documentation>
+      <xs:documentation source="description">
+        Specifies the default value for this environment based on application type.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="any" minOccurs="0" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">0.6+</xs:documentation>
+          <xs:documentation source="description">
+            The default value that matches any application type.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="api" minOccurs="0" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">0.7+</xs:documentation>
+          <xs:documentation source="description">
+            The default value if the application type is API.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+</xs:schema>
