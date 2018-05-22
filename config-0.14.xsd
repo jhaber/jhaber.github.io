@@ -97,14 +97,20 @@
           <xs:documentation source="description">The type of the configuration option value.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="enumType" type="xs:string">
+      <xs:element name="defaultValues">
         <xs:annotation>
           <xs:documentation source="version">0.14+</xs:documentation>
           <xs:documentation source="description">
-            For ENUM, ENUM_LIST, and ENUM_SET options, this specifies the fully qualified class name of the enum.</xs:documentation>
+            Specifies the default values for this configuration option.
+          </xs:documentation>
         </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="defaultValue" minOccurs="0" maxOccurs="unbounded" type="DefaultValue"/>
+          </xs:sequence>
+        </xs:complexType>
       </xs:element>
-      <xs:element name="defaultValue" type="xs:string">
+      <xs:element name="defaultValue" minOccurs="0" type="xs:string">
         <xs:annotation>
           <xs:documentation source="version">0.6+</xs:documentation>
           <xs:documentation source="description">
@@ -135,15 +141,30 @@
       <xs:enumeration value="DOUBLE" />
       <xs:enumeration value="BOOLEAN" />
       <xs:enumeration value="DURATION" />
-      <xs:enumeration value="ENUM" />
       <xs:enumeration value="STRING_LIST" />
       <xs:enumeration value="INTEGER_LIST" />
       <xs:enumeration value="DURATION_LIST" />
-      <xs:enumeration value="ENUM_LIST" />
       <xs:enumeration value="STRING_SET" />
       <xs:enumeration value="INTEGER_SET" />
       <xs:enumeration value="DURATION_SET" />
-      <xs:enumeration value="ENUM_SET" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="DefaultValue">
+    <xs:element name="value" type="xs:string" />
+    <xs:element name="environment" minOccurs="0" type="Environment" />
+    <xs:element name="stack" minOccurs="0" type="Stack" />
+  </xs:complexType>
+  <xs:simpleType name="Environment" final="restriction" >
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LOCAL" />
+      <xs:enumeration value="QA" />
+      <xs:enumeration value="PROD" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Stack" final="restriction" >
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="API" />
+      <xs:enumeration value="OTHER" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="EnvironmentDefaults">
