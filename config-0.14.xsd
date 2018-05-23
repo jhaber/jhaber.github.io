@@ -97,20 +97,7 @@
           <xs:documentation source="description">The type of the configuration option value.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="defaultValues">
-        <xs:annotation>
-          <xs:documentation source="version">0.14+</xs:documentation>
-          <xs:documentation source="description">
-            Specifies the default values for this configuration option.
-          </xs:documentation>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="defaultValue" minOccurs="0" maxOccurs="unbounded" type="DefaultValue"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="defaultValue" minOccurs="0" type="xs:string">
+      <xs:element name="globalDefault" minOccurs="0" type="xs:string">
         <xs:annotation>
           <xs:documentation source="version">0.6+</xs:documentation>
           <xs:documentation source="description">
@@ -118,11 +105,32 @@
           </xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element name="specificDefaults" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation source="version">0.14+</xs:documentation>
+          <xs:documentation source="description">
+            Specifies the default values for this configuration option in specific environments.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="specificDefault" minOccurs="0" maxOccurs="unbounded" type="SpecificDefault"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="defaultValue" minOccurs="0" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">0.6+</xs:documentation>
+          <xs:documentation source="description">
+            Deprecated: specifies the default value for this configuration option.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="environmentDefaults" minOccurs="0" type="EnvironmentDefaults">
         <xs:annotation>
           <xs:documentation source="version">0.6+</xs:documentation>
           <xs:documentation source="description">
-            Specifies the default value(s) for this configuration option.
+            Deprecated: specifies the default value(s) for this configuration option.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
@@ -149,10 +157,12 @@
       <xs:enumeration value="DURATION_SET" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="DefaultValue">
-    <xs:element name="value" type="xs:string" />
-    <xs:element name="environment" minOccurs="0" type="Environment" />
-    <xs:element name="stack" minOccurs="0" type="Stack" />
+  <xs:complexType name="SpecificDefault">
+    <xs:all>
+      <xs:element name="environment" minOccurs="0" type="Environment" />
+      <xs:element name="stack" minOccurs="0" type="Stack" />
+      <xs:element name="value" type="xs:string" />
+    </xs:all>
   </xs:complexType>
   <xs:simpleType name="Environment" final="restriction" >
     <xs:restriction base="xs:string">
